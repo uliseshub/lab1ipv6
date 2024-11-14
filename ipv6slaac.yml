@@ -31,7 +31,18 @@ topology:
        - "sysctl -w net.ipv6.conf.all.forwarding=1"
        
     ######################################################################################
-    
+
+        
+    FRR3:
+      kind: linux
+      image: quay.io/frrouting/frr:8.4.1     # trae la imagen iso de la nube y luego el mv la desacrga en mi maquina
+      binds:           # Trae archivos externos
+        - router3/daemons:/etc/frr/daemons
+        - router3/frr.conf:/etc/frr/frr.conf
+      exec:
+       - "sysctl -w net.ipv6.conf.all.forwarding=1"
+       
+    ######################################################################################
     PC2:
       kind: linux
       image: docker.io/esanchezv/kaliipv6v2:latest    #imagen en repositorio creada por ernesto, basa en linux
@@ -41,4 +52,5 @@ topology:
   links:
    - endpoints: ["PC1:eth1", "FRR1:eth1"]    #ETH0 ES PARA MANAGMENT, no se puede usar, se la reserva conteinerlab
    - endpoints: ["FRR1:eth2", "FRR2:eth1"]
-   - endpoints: ["FRR2:eth3", "PC2:eth1"]
+   - endpoints: ["FRR2:eth2", "FRR3:eth1"]
+   - endpoints: ["FRR3:eth3", "PC2:eth1"]
