@@ -53,4 +53,4 @@ topology:
    - endpoints: ["PC1:eth1", "FRR1:eth1"]    #ETH0 ES PARA MANAGMENT, no se puede usar, se la reserva conteinerlab
    - endpoints: ["FRR1:eth2", "FRR2:eth1"]
    - endpoints: ["FRR2:eth2", "FRR3:eth1"]
-   - endpoints: ["FRR3:eth3", "PC2:eth1"]
+   - endpoints: ["FRR3:eth2", "PC2:eth1"]
